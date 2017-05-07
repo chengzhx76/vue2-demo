@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>vue2-demo</title>
 </head>
 <body>
-    <div id="app">
+    <!-- <div id="app">
         {{ message }}
     </div>
 
@@ -15,9 +15,88 @@
       </span>
     </div>
 
+    <div id="app-3">
+        <p v-if="seen">学习v-if!</p>
+    </div>
+
+    <div id="app-4">
+        <ol>
+            <li v-for="todo in todos">
+                {{todo.text}}
+            </li>
+        </ol>
+    </div>
+
+    <div id="app-5">
+        <p>{{ msg }}</p>
+        <button v-on:click="rg">逆转Message</button>
+    </div>
+
+    <div id="app-6">
+        <p>{{ msg }}</p>
+        <input v-model="msg"/>
+    </div>-->
+
+    <!-- ---------------------------- -->
+    <div id="app-7"> <!-- 这个依赖下面的Vue.component -->
+        <ol>
+            <!-- 现在我们为每个todo-item提供待办项对象    -->
+            <!-- 待办项对象是变量，即其内容可以是动态的 -->
+            <todo-item v-for="item in list" v-bind:todow="item"></todo-item>
+        </ol>
+    </div>
+
+
+
 </body>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="vue.js"></script>
 <script>
+    // 定义名为 todo-item 的新组
+    Vue.component('todo-item', {
+        props: ['todow'],
+        template: '<li>{{ todow.text }}</li>'
+    });
+
+    var app7 = new Vue({
+        el: '#app-7',
+        data: {
+            list: [
+                {text: '素材0'},
+                {text: '素材1'},
+                {text: '素材2'}
+            ]
+        }
+    });
+
+    /*var app6 = new Vue({
+        el: '#app-6',
+        data: {
+            msg: 'Hello word!'
+        }
+    });
+
+    var app5 = new Vue({
+        el: '#app-5',
+        data: {
+            msg: "Hello Vue!"
+        },
+        methods: {
+            rg: function() {
+                this.msg = this.msg.split('').reverse().join('');
+            }
+        }
+
+    })
+    var app4 = new Vue({
+        el: '#app-4',
+        data: {
+            todos : [
+                {text: 'vue1'},
+                {text: 'vue2'},
+                {text: 'vue3'}
+            ]
+        }
+    });
 
     var app = new Vue({
         el: '#app',
@@ -32,5 +111,12 @@
             message: '页面加载于 ' + new Date()
         }
     })
+
+    var app3 = new Vue({
+        el: '#app-3',
+        data : {
+            seen: true
+        }
+    })*/
 </script>
 </html>
